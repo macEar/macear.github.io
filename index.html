@@ -13,7 +13,7 @@
 
             // Отправляем команду для получения флага
             socket.onopen = function (event) {
-                socket.send("/getkey");
+                socket.send(JSON.stringify({text: "/getkey"}));
             };
 
             socket.onmessage = function (event) {
