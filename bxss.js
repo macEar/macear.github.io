@@ -126,7 +126,7 @@ function addEvent(element, eventName, fn) {
         element.attachEvent('on' + eventName, fn);
 }
 
-probe_return_data = {};
+const probe_return_data = {};
 
 // Prevent failure incase the browser refuses to give us any of the probe data.
 try {
