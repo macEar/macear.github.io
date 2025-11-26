@@ -1,0 +1,9 @@
+{
+    "url": "https://macear.github.io/swagger.yaml",
+    "urls": [
+        {
+            "url": "https://macear.github.io/swagger.yaml",
+            "name": "Foo"
+        }
+    ]
+}
