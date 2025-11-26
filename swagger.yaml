@@ -1,0 +1,22 @@
+swagger: '2.0'
+info:
+  title: API Resource Documentation
+  description: |
+    <math><foo-test><mi><li><table><foo-test><li></li></foo-test><a><style><! \${</style>}<foo-b id="><img src onerror='alert(1)'>">hmm...</foo-b></a></table></li></mi></foo-test></math>
+
+  version: production
+basePath: /JSSResource/
+produces:
+  - application/xml
+  - application/json
+consumes:
+  - application/xml
+  - application/json
+security:
+  - basicAuth: []
+paths:
+  /ping:
+    get:
+      responses:
+        200:
+          description: OK
