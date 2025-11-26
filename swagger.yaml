@@ -1,8 +1,14 @@
 swagger: '2.0'
 info:
   title: API Resource Documentation
+  termsOfService: "javascript:alert(document.cookie)"
+  contact: 
+    name: "API Support",
+    url: "javascript:alert(document.cookie)",
+    email: "javascript:alert(document.cookie)"
+  version: "1.0.1"
   description: |
-    <math><foo-test><mi><li><table><foo-test><li></li></foo-test><a><style><! \${</style>}<foo-b id="><img src onerror='alert(1)'>">hmm...</foo-b></a></table></li></mi></foo-test></math>
+    <svg><annotation-xml><foreignobject><style><!--</style><p id="--><img src='x' onerror='alert(1)'>">
 
   version: production
 basePath: /JSSResource/
