@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: '3.0.0'
 info:
   title: API Resource Documentation
   termsOfService: "javascript:alert(document.cookie)"
