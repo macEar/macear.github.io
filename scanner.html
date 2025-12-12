@@ -6,7 +6,7 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 60%;
+            width: 70%;
             margin: 20px auto;
         }
         th, td {
@@ -42,36 +42,54 @@
         const ports = [80, 3000, 8000];
         const protocol = "http";
 
-        async function checkPort(ip, port, protocol="http") {
-            const url = `${protocol}://${ip}:${port}/`;
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 3000);
-                await fetch(url, { method: 'GET', mode: 'no-cors', signal: controller.signal });
-                clearTimeout(timeoutId);
-                return true;
-            } catch (e) {
-                return false;
+    async function checkPort(ip, port, protocol = "http") {
+        const url = `${protocol}://${ip}:${port}/`;
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+            await fetch(url, { 
+                method: "GET",
+                mode: "no-cors",
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+            return { ok: true, error: null };
+
+        } catch (err) {
+            return { ok: false, error: err.toString() };
+        }
+    }
+
+    async function scan() {
+        const tbody = document.querySelector("#results tbody");
+
+        for (let ip of ips) {
+            for (let port of ports) {
+
+                const result = await checkPort(ip, port, protocol);
+
+                const row = document.createElement("tr");
+
+                const statusText = result.ok ? "opened" : result.error;
+
+                row.innerHTML = `
+                    <td>${ip}</td>
+                    <td>${port}</td>
+                    <td class="${result.ok ? "opened" : "closed"}">
+                        ${statusText}
+                    </td>
+                `;
+
+                tbody.appendChild(row);
             }
         }
+    }
 
-        async function scan() {
-            const tbody = document.querySelector("#results tbody");
-            for (let ip of ips) {
-                for (let port of ports) {
-                    const isOpen = await checkPort(ip, port, protocol);
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${ip}</td>
-                        <td>${port}</td>
-                        <td class="${isOpen ? 'opened' : 'closed'}">${isOpen ? 'opened' : 'closed'}</td>
-                    `;
-                    tbody.appendChild(row);
-                }
-            }
-        }
+    scan();
+</script>
 
-        scan();
-    </script>
 </body>
 </html>
