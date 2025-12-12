@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Port Scanner</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+        .opened {
+            color: green;
+            font-weight: bold;
+        }
+        .closed {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Port Availability Checker</h2>
+    <table id="results">
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>Port</th>
+                <th>Open</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const ips = ["10.129.0.3","10.129.0.10","10.129.0.7","10.129.0.14","10.129.0.20","10.129.0.21","10.129.0.33","10.129.0.33","10.129.0.27","10.129.0.28","10.129.0.34","10.129.0.35","10.129.0.36","10.129.0.37","10.129.0.38","10.129.0.39","10.129.0.40"];
+        const ports = [80, 3000, 8000];
+        const protocol = "http";
+
+        async function checkPort(ip, port, protocol="http") {
+            const url = `${protocol}://${ip}:${port}/`;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3000);
+                await fetch(url, { method: 'GET', mode: 'no-cors', signal: controller.signal });
+                clearTimeout(timeoutId);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        async function scan() {
+            const tbody = document.querySelector("#results tbody");
+            for (let ip of ips) {
+                for (let port of ports) {
+                    const isOpen = await checkPort(ip, port, protocol);
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${ip}</td>
+                        <td>${port}</td>
+                        <td class="${isOpen ? 'opened' : 'closed'}">${isOpen ? 'opened' : 'closed'}</td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            }
+        }
+
+        scan();
+    </script>
+</body>
+</html>
